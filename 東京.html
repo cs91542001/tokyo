@@ -1,0 +1,1231 @@
+<!DOCTYPE html>
+<html lang="zh-TW" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>東京自由行探索指南 — TOKYO TRAVEL GUIDE | 景點、美食、交通全攻略</title>
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: Noto Sans TC, Plus Jakarta Sans, Shippori Mincho -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;600;700;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Shippori+Mincho:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['"Plus Jakarta Sans"', '"Noto Sans TC"', 'sans-serif'],
+            serif: ['"Shippori Mincho"', '"Noto Serif TC"', 'serif'],
+          },
+          colors: {
+            tokyoNight: '#0D1117',
+            tokyoIndigo: '#1E293B',
+            sakuraPink: {
+              50: '#FFF1F2',
+              100: '#FFE4E6',
+              200: '#FECDD3',
+              400: '#FB7185',
+              500: '#F43F5E',
+              600: '#E11D48',
+            },
+            fujiBlue: {
+              50: '#F0F9FF',
+              100: '#E0F2FE',
+              500: '#0EA5E9',
+              700: '#0369A1',
+            },
+            washiBg: '#F8FAFC',
+            warmPaper: '#F3EFEA',
+            matchaGreen: '#4D7C0F',
+          },
+          boxShadow: {
+            'japanese': '0 10px 30px -5px rgba(15, 23, 42, 0.06), 0 4px 6px -2px rgba(15, 23, 42, 0.03)',
+            'float': '0 20px 40px -15px rgba(225, 29, 72, 0.18)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    ::selection {
+      background-color: #FECDD3;
+      color: #0D1117;
+    }
+    .glass-header {
+      background: rgba(255, 255, 255, 0.90);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+    .hero-gradient {
+      background: linear-gradient(180deg, rgba(13, 17, 23, 0.45) 0%, rgba(13, 17, 23, 0.85) 100%);
+    }
+    .tab-active {
+      background-color: #0D1117;
+      color: #FFFFFF;
+      box-shadow: 0 4px 12px rgba(13, 17, 23, 0.15);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      height: 6px;
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #E2E8F0;
+      border-radius: 9999px;
+    }
+    /* Modal transitions */
+    .modal-active {
+      opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+    }
+    .modal-hidden {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+  </style>
+</head>
+<body class="bg-washiBg text-slate-800 font-sans antialiased overflow-x-hidden selection:bg-sakuraPink-200">
+
+  <header class="fixed top-0 left-0 right-0 z-50 glass-header border-b border-slate-200/80 transition-all duration-300">
+    <div class="max-w-7xl mx-auto px-5 sm:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <a href="#hero" class="flex items-center space-x-3 group">
+        <div class="w-10 h-10 rounded-2xl bg-sakuraPink-500 text-white flex items-center justify-center font-serif text-xl font-bold shadow-md shadow-sakuraPink-500/20 group-hover:rotate-6 transition-transform">
+          東
+        </div>
+        <div>
+          <span class="font-serif text-xl font-bold text-slate-900 tracking-wider block leading-none">TOKYO</span>
+          <span class="text-[10px] tracking-widest text-sakuraPink-600 font-medium block mt-1 uppercase">東京自由行指南</span>
+        </div>
+      </a>
+
+      <!-- Desktop Navigation Menu -->
+      <nav class="hidden lg:flex items-center space-x-7 text-xs font-semibold tracking-wider text-slate-600 uppercase">
+        <a href="#districts" class="hover:text-sakuraPink-600 transition-colors py-1">分區地圖</a>
+        <a href="#itineraries" class="hover:text-sakuraPink-600 transition-colors py-1">精選行程</a>
+        <a href="#budget" class="hover:text-sakuraPink-600 transition-colors py-1">預算試算</a>
+        <a href="#transport" class="hover:text-sakuraPink-600 transition-colors py-1">交通與指南</a>
+        <a href="#checklist" class="hover:text-sakuraPink-600 transition-colors py-1">必訪清單</a>
+      </nav>
+
+      <!-- Currency & Quick Action -->
+      <div class="hidden sm:flex items-center space-x-3">
+        <div class="px-3 py-1.5 rounded-full bg-slate-100 text-[11px] font-medium text-slate-600 flex items-center space-x-1.5 border border-slate-200">
+          <i data-lucide="coins" class="w-3.5 h-3.5 text-amber-500"></i>
+          <span>參考匯率 1 JPY ≈ 0.21 TWD</span>
+        </div>
+        <a href="#districts" class="px-4 py-2 rounded-full bg-slate-900 text-white text-xs font-semibold hover:bg-sakuraPink-600 transition-colors shadow-sm flex items-center space-x-1.5">
+          <span>開始探索</span>
+          <i data-lucide="arrow-right" class="w-3.5 h-3.5"></i>
+        </a>
+      </div>
+
+      <!-- Mobile Menu Button -->
+      <button id="mobileNavToggle" aria-label="打開導覽選單" class="lg:hidden p-2 rounded-xl text-slate-700 hover:bg-slate-100">
+        <i data-lucide="menu" class="w-6 h-6"></i>
+      </button>
+    </div>
+
+    <!-- Mobile Drawer -->
+    <div id="mobileDrawer" class="hidden lg:hidden border-t border-slate-200 bg-white/95 px-6 py-5 space-y-4 shadow-xl">
+      <a href="#districts" class="mobile-nav-item block text-sm font-semibold text-slate-800 hover:text-sakuraPink-600">分區探索 (澀谷/新宿/淺草...)</a>
+      <a href="#itineraries" class="mobile-nav-item block text-sm font-semibold text-slate-800 hover:text-sakuraPink-600">4天~5天 經典推薦行程</a>
+      <a href="#budget" class="mobile-nav-item block text-sm font-semibold text-slate-800 hover:text-sakuraPink-600">即時自由行預算計算機</a>
+      <a href="#transport" class="mobile-nav-item block text-sm font-semibold text-slate-800 hover:text-sakuraPink-600">交通地下鐵與季節指南</a>
+      <a href="#checklist" class="mobile-nav-item block text-sm font-semibold text-slate-800 hover:text-sakuraPink-600">東京 10 大必做願望清單</a>
+    </div>
+  </header>
+
+  <section id="hero" class="relative min-h-[92vh] flex items-center justify-center pt-24 pb-16 overflow-hidden bg-slate-950">
+    <!-- Hero Background Image -->
+    <div class="absolute inset-0 z-0">
+      <img 
+        src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=2000&q=85" 
+        alt="東京鐵塔與城市夜景" 
+        class="w-full h-full object-cover object-center scale-105 animate-[pulse_10s_ease-in-out_infinite]"
+        onerror="this.src='https://placehold.co/1920x1080/0F172A/FFFFFF?text=TOKYO+CITY'"
+      >
+      <div class="absolute inset-0 hero-gradient"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-5xl mx-auto px-6 text-center text-white space-y-8">
+      
+      <div class="inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md border border-white/20 text-xs font-semibold tracking-wider text-sakuraPink-200">
+        <span class="w-2 h-2 rounded-full bg-sakuraPink-400 animate-ping"></span>
+        <span>2026 最新繁體中文東京旅遊攻略</span>
+      </div>
+
+      <h1 class="text-4xl sm:text-6xl md:text-7xl font-serif font-bold tracking-tight leading-tight">
+        穿梭傳統與未來的<br>
+        <span class="bg-gradient-to-r from-white via-sakuraPink-100 to-sakuraPink-300 bg-clip-text text-transparent">極致感官之都・東京</span>
+      </h1>
+
+      <p class="max-w-2xl mx-auto text-base sm:text-lg text-slate-300 font-light leading-relaxed">
+        從淺草寺的千年香火，到澀谷十字路口的都會霓虹；在米其林星級饗宴與下町拉麵香氣之間，尋找專屬於你的東京漫遊步調。
+      </p>
+
+      <!-- Quick Action Jump Buttons -->
+      <div class="flex flex-wrap items-center justify-center gap-3 pt-2">
+        <a href="#districts" class="px-7 py-3.5 rounded-full bg-sakuraPink-600 text-white font-semibold text-sm hover:bg-sakuraPink-500 shadow-float transition-all flex items-center space-x-2">
+          <i data-lucide="map-pin" class="w-4 h-4"></i>
+          <span>瀏覽分區指南</span>
+        </a>
+        <a href="#budget" class="px-7 py-3.5 rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white font-semibold text-sm hover:bg-white hover:text-slate-900 transition-all flex items-center space-x-2">
+          <i data-lucide="calculator" class="w-4 h-4"></i>
+          <span>自由行預算計算</span>
+        </a>
+      </div>
+
+      <!-- Quick Stats Strip -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 pt-10 max-w-3xl mx-auto border-t border-white/15 text-left">
+        <div class="p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+          <span class="block text-xl md:text-2xl font-bold font-serif text-white">23 區</span>
+          <span class="text-xs text-slate-400">獨具特色都會風貌</span>
+        </div>
+        <div class="p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+          <span class="block text-xl md:text-2xl font-bold font-serif text-white">200+ 間</span>
+          <span class="text-xs text-slate-400">米其林摘星名店</span>
+        </div>
+        <div class="p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+          <span class="block text-xl md:text-2xl font-bold font-serif text-white">13 條</span>
+          <span class="text-xs text-slate-400">綿密市區地下鐵路網</span>
+        </div>
+        <div class="p-3 bg-white/5 backdrop-blur-sm rounded-xl border border-white/10">
+          <span class="block text-xl md:text-2xl font-bold font-serif text-white">四季皆宜</span>
+          <span class="text-xs text-slate-400">櫻花、花火、楓葉與雪景</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="districts" class="py-24 max-w-7xl mx-auto px-6 sm:px-8">
+    <div class="text-center max-w-2xl mx-auto mb-14">
+      <span class="text-xs font-bold uppercase tracking-widest text-sakuraPink-600 block mb-2">NEIGHBORHOOD GUIDE</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">東京熱門分區深度導覽</h2>
+      <p class="text-slate-500 text-sm mt-3">每個街區都有獨一無二的靈魂。點選切換查看各區核心亮點、必訪名勝與推薦美食。</p>
+      <div class="w-12 h-0.5 bg-sakuraPink-500 mx-auto mt-4"></div>
+    </div>
+
+    <!-- Category Filter Tabs -->
+    <div class="flex items-center justify-center flex-wrap gap-2 mb-10" id="districtTabs">
+      <button onclick="switchDistrict('all')" class="district-tab tab-active px-5 py-2 rounded-full text-xs font-semibold tracking-wider transition-all">
+        全部街區
+      </button>
+      <button onclick="switchDistrict('modern')" class="district-tab bg-white text-slate-600 border border-slate-200 px-5 py-2 rounded-full text-xs font-semibold tracking-wider hover:bg-slate-50 transition-all">
+        都會潮流 (澀谷/新宿/銀座)
+      </button>
+      <button onclick="switchDistrict('tradition')" class="district-tab bg-white text-slate-600 border border-slate-200 px-5 py-2 rounded-full text-xs font-semibold tracking-wider hover:bg-slate-50 transition-all">
+        下町古風 (淺草/上野)
+      </button>
+      <button onclick="switchDistrict('subculture')" class="district-tab bg-white text-slate-600 border border-slate-200 px-5 py-2 rounded-full text-xs font-semibold tracking-wider hover:bg-slate-50 transition-all">
+        次文化與海灣 (秋葉原/台場)
+      </button>
+    </div>
+
+    <!-- District Cards Grid -->
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="districtGrid">
+      
+      <!-- Card: 澀谷 (Shibuya) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="modern">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=800&q=80" alt="澀谷十字路口" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-900/85 text-white backdrop-blur-md">
+            都會潮流之巔
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-sakuraPink-500 text-white">
+            交通：JR 山手線 / 銀座線
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">澀谷 SHIBUYA</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              全球最繁忙的十字路口與日本流行文化的發信地。最新地標 SHIBUYA SKY 能以360度露天無死角遠眺富士山與東京鐵塔。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：SHIBUYA SKY、忠犬八公、宮下公園 (MIYASHITA PARK)</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：挽肉與米漢堡排、極味屋鐵板漢堡肉、澀谷道玄坂拉麵</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('shibuya')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整澀谷景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: 淺草 (Asakusa) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="tradition">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80" alt="淺草寺雷門" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-600/90 text-white backdrop-blur-md">
+            江戶下町懷舊
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-900 text-white">
+            交通：銀座線 / 都營淺草線
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">淺草 ASAKUSA</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              擁有近1400年歷史的淺草寺與雷門大紅燈籠。穿著和服漫步於仲見世商店街，感受江戶時代代代相傳的人情味與傳統工藝。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：淺草寺雷門、晴空塔 (SKYTREE)、隅田公園、花屋敷</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：淺草炸肉餅、壽々喜園世界最濃抹茶冰淇淋、大黑家天婦羅</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('asakusa')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整淺草景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: 新宿 (Shinjuku) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="modern">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=800&q=80" alt="新宿歌舞伎町夜景" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-slate-900/85 text-white backdrop-blur-md">
+            不夜城與購物聖地
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-sakuraPink-500 text-white">
+            交通：JR 山手線 / 中央線
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">新宿 SHINJUKU</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              全球單日進出人次最高的大型樞紐。集結伊勢丹等頂級百貨、歌舞伎町的五光十色、以及都會綠洲新宿御苑。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：新宿御苑、歌舞伎町立體巨大3D貓、東京都廳免費觀景台</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：風雲兒沾麵、炸牛元村 (牛かつ)、思出橫丁懷舊串燒</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('shinjuku')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整新宿景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: 銀座 (Ginza) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="modern">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=800&q=80" alt="銀座街道" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-amber-700/85 text-white backdrop-blur-md">
+            奢華精品與米其林
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-900 text-white">
+            交通：銀座線 / 丸之內線 / 日比谷線
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">銀座 GINZA</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              東洋精品旗艦店的最高殿堂。每逢週末午後實施「步行者天國」，可悠閒在寬敞大道上漫步、喝下午茶並欣賞經典建築美學。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：GINZA SIX、銀座和光鐘塔、伊東屋 (Itoya) 百年文具館</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：銀座篝 (雞白湯拉麵)、木村家紅豆麵包、資生堂 Parlour 甜點</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('ginza')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整銀座景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: 秋葉原 (Akihabara) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="subculture">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80" alt="秋葉原電器街" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-fujiBlue-700/90 text-white backdrop-blur-md">
+            動漫模型與電氣天堂
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-sakuraPink-500 text-white">
+            交通：JR 山手線 / 總武線
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">秋葉原 AKIHABARA</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              全球御宅族聖地！無數模型扭蛋店、女僕咖啡廳、復古電玩老店與大型 3C 電器量販店（Yodobashi-Akiba）林立。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：Radio會館 (ラジオ会館)、Mandarake Complex、萬代扭蛋百貨</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：丸五豬排 (米其林必比登推薦)、青島食堂生薑醬油拉麵</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('akihabara')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整秋葉原景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+      <!-- Card: 台場 (Odaiba) -->
+      <div class="district-card bg-white rounded-3xl overflow-hidden border border-slate-200/80 shadow-japanese hover:shadow-xl transition-all duration-300 flex flex-col" data-type="subculture">
+        <div class="relative h-56 overflow-hidden">
+          <img src="https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=800&q=80" alt="台場彩虹大橋與海灣" class="w-full h-full object-cover">
+          <span class="absolute top-4 left-4 px-3 py-1 rounded-full text-[11px] font-bold bg-teal-800/90 text-white backdrop-blur-md">
+            浪漫海灣夜景與光影藝術
+          </span>
+          <span class="absolute bottom-4 right-4 px-3 py-1 rounded-full text-[11px] font-semibold bg-slate-900 text-white">
+            交通：百合海鷗號 (ゆりかもめ)
+          </span>
+        </div>
+        <div class="p-6 flex-1 flex flex-col justify-between">
+          <div>
+            <h3 class="font-serif text-2xl font-bold text-slate-900 mb-2">台場 ODAIBA</h3>
+            <p class="text-xs text-slate-500 leading-relaxed mb-4">
+              東京灣上的人工海濱樂園。搭乘無人駕駛電車穿梭彩虹大橋，朝聖 1:1 實體獨角獸鋼彈，並享受夕陽海景與摩天輪景致。
+            </p>
+            <div class="space-y-2 pt-2 border-t border-slate-100">
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="check-circle-2" class="w-3.5 h-3.5 text-sakuraPink-500 mr-2 shrink-0"></i>
+                <span>必去：實物大獨角獸鋼彈、海濱公園自由女神、DiverCity Tokyo</span>
+              </div>
+              <div class="flex items-center text-xs text-slate-700">
+                <i data-lucide="utensils" class="w-3.5 h-3.5 text-amber-500 mr-2 shrink-0"></i>
+                <span>美食：Bills 世界第一早餐鬆餅、築地玉壽司台場分店</span>
+              </div>
+            </div>
+          </div>
+          <button onclick="openDetailModal('odaiba')" class="mt-6 w-full py-2.5 rounded-xl bg-slate-50 hover:bg-slate-900 hover:text-white text-xs font-semibold text-slate-700 transition-colors border border-slate-200 flex items-center justify-center space-x-1.5">
+            <span>查看完整台場景點攻略</span>
+            <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <div id="districtModal" class="modal-hidden fixed inset-0 z-50 bg-slate-900/70 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 transition-all duration-300">
+    <div class="relative w-full max-w-2xl bg-white rounded-3xl overflow-hidden shadow-2xl border border-slate-200 flex flex-col max-h-[90vh]">
+      <div class="relative h-60 bg-slate-900 shrink-0">
+        <img id="modalImg" src="" alt="地區照片" class="w-full h-full object-cover">
+        <button onclick="closeDetailModal()" class="absolute top-4 right-4 w-9 h-9 rounded-full bg-slate-900/80 text-white flex items-center justify-center hover:bg-sakuraPink-600 transition-colors">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+        <div class="absolute bottom-4 left-6 text-white">
+          <span id="modalSubtag" class="px-2.5 py-0.5 text-[11px] font-bold uppercase tracking-wider bg-sakuraPink-500 text-white rounded-md">特色</span>
+          <h3 id="modalName" class="font-serif text-3xl font-bold mt-1 drop-shadow-md">分區名稱</h3>
+        </div>
+      </div>
+
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+        <div>
+          <h4 class="text-xs uppercase font-bold tracking-widest text-sakuraPink-600">街區速寫</h4>
+          <p id="modalDesc" class="text-sm text-slate-700 leading-relaxed mt-1"></p>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <span class="text-xs font-bold text-slate-800 flex items-center">
+              <i data-lucide="compass" class="w-4 h-4 text-sakuraPink-500 mr-1.5"></i>
+              深度私房玩法
+            </span>
+            <p id="modalTip" class="text-xs text-slate-600 mt-2 leading-relaxed"></p>
+          </div>
+          <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200/80">
+            <span class="text-xs font-bold text-slate-800 flex items-center">
+              <i data-lucide="subway" class="w-4 h-4 text-fujiBlue-500 mr-1.5"></i>
+              交通推薦車票
+            </span>
+            <p id="modalPass" class="text-xs text-slate-600 mt-2 leading-relaxed"></p>
+          </div>
+        </div>
+
+        <div class="p-4 rounded-2xl bg-amber-50/70 border border-amber-200/80">
+          <span class="text-xs font-bold text-amber-900 flex items-center">
+            <i data-lucide="coffee" class="w-4 h-4 text-amber-600 mr-1.5"></i>
+            在地美食口袋名單
+          </span>
+          <p id="modalEats" class="text-xs text-amber-800 mt-1.5 leading-relaxed"></p>
+        </div>
+
+        <div class="pt-4 border-t border-slate-100 flex items-center justify-between">
+          <span class="text-xs text-slate-400">建議停留：半天至一整天</span>
+          <button onclick="closeDetailModal()" class="px-5 py-2 rounded-xl bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-colors">
+            關閉視窗
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <section id="itineraries" class="py-24 bg-warmPaper/60 border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+        <div>
+          <span class="text-xs font-bold uppercase tracking-widest text-sakuraPink-600 block mb-2">CURATED ITINERARIES</span>
+          <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">精選東京自由行示範路線</h2>
+        </div>
+        
+        <!-- Day Switchers -->
+        <div class="mt-4 md:mt-0 flex gap-2">
+          <button onclick="showItinerary('classic')" id="btnPlanClassic" class="px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition-all shadow-sm">
+            5天4夜 經典初訪精華
+          </button>
+          <button onclick="showItinerary('deep')" id="btnPlanDeep" class="px-5 py-2 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all">
+            4天3夜 文青與慢活下町
+          </button>
+        </div>
+      </div>
+
+      <!-- Plan 1: 5 Days Classic -->
+      <div id="planClassic" class="space-y-4">
+        
+        <!-- Day 1 -->
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-sakuraPink-300 transition-colors">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 font-serif font-bold text-lg flex items-center justify-center shrink-0">
+              D1
+            </span>
+            <div>
+              <div class="text-xs font-bold text-sakuraPink-600 uppercase tracking-wider">抵達東京 • 初探璀璨夜景</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">成田/羽田機場 ➔ 新宿放行李 ➔ 東京都廳觀景台 ➔ 思出橫丁</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                抵達後搭乘 Skyliner 或利木津巴士抵達市區。傍晚登上免費的東京都廳南展望室眺望夜景，晚上到充滿昭和居酒屋風情的思出橫丁品嚐炭烤串燒。
+              </p>
+            </div>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-[11px] font-semibold text-slate-700 whitespace-nowrap self-start md:self-center">
+            交通：JR 山手線
+          </span>
+        </div>
+
+        <!-- Day 2 -->
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-sakuraPink-300 transition-colors">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 font-serif font-bold text-lg flex items-center justify-center shrink-0">
+              D2
+            </span>
+            <div>
+              <div class="text-xs font-bold text-sakuraPink-600 uppercase tracking-wider">江戶古意與當代地標</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">淺草寺雷門 ➔ 仲見世商店街 ➔ 隅田川水上巴士 ➔ 晴空塔 ➔ 上野阿美橫丁</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                晨間感受淺草寺莊嚴氣氛，品嚐炸肉餅與花月堂菠蘿麵包。午後漫步至晴空塔購物城逛街，傍晚前往阿美橫丁採購人氣平價藥妝零食。
+              </p>
+            </div>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-[11px] font-semibold text-slate-700 whitespace-nowrap self-start md:self-center">
+            推薦票券：東京地下鐵 24hr 券
+          </span>
+        </div>
+
+        <!-- Day 3 -->
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-sakuraPink-300 transition-colors">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 font-serif font-bold text-lg flex items-center justify-center shrink-0">
+              D3
+            </span>
+            <div>
+              <div class="text-xs font-bold text-sakuraPink-600 uppercase tracking-wider">時尚購物與極致天際線</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">明治神宮 ➔ 原宿竹下通 ➔ 表參道建築巡禮 ➔ 澀谷十字路口 ➔ SHIBUYA SKY</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                早晨在都會綠蔭明治神宮森林享受芬多精；接著漫步表參道欣賞安藤忠雄、伊東豊雄的品牌建築；傍晚於預約好的 SHIBUYA SKY 捕捉絕美夕陽魔幻時刻。
+              </p>
+            </div>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-[11px] font-semibold text-slate-700 whitespace-nowrap self-start md:self-center">
+            重點：SHIBUYA SKY 需提早預約
+          </span>
+        </div>
+
+        <!-- Day 4 -->
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-sakuraPink-300 transition-colors">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 font-serif font-bold text-lg flex items-center justify-center shrink-0">
+              D4
+            </span>
+            <div>
+              <div class="text-xs font-bold text-sakuraPink-600 uppercase tracking-wider">夢幻樂園或海灣浪漫</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">方案A：東京迪士尼樂園 / 海洋 或 方案B：築地場外市場 ➔ 銀座 ➔ 台場海灣</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                自由選擇：沈浸在世界頂級迪士尼海洋冒險；或上午到築地享用生魚片丼飯，下午在銀座漫步品嚐下午茶，傍晚前往台場欣賞彩虹大橋夜景與鋼彈燈光秀。
+              </p>
+            </div>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-[11px] font-semibold text-slate-700 whitespace-nowrap self-start md:self-center">
+            交通：JR 京葉線 / 百合海鷗號
+          </span>
+        </div>
+
+        <!-- Day 5 -->
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6 hover:border-sakuraPink-300 transition-colors">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 font-serif font-bold text-lg flex items-center justify-center shrink-0">
+              D5
+            </span>
+            <div>
+              <div class="text-xs font-bold text-sakuraPink-600 uppercase tracking-wider">東京車站巡禮 • 滿載伴手禮賦歸</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">東京車站紅磚驛舍 ➔ 皇居外苑二重橋 ➔ 車站一番街伴手禮 ➔ 機場返程</h3>
+              <p class="text-xs text-slate-500 mt-2 leading-relaxed">
+                欣賞辰野金吾設計的大正風華紅磚車站，在一番街購入「NewYork Perfect Cheese」等超人氣伴手禮，帶著滿滿回憶輕鬆前往機場返台。
+              </p>
+            </div>
+          </div>
+          <span class="px-3.5 py-1.5 rounded-full bg-slate-100 text-[11px] font-semibold text-slate-700 whitespace-nowrap self-start md:self-center">
+            行李寄放：東京站投幣置物櫃
+          </span>
+        </div>
+
+      </div>
+
+      <!-- Plan 2: 4 Days Deep Culture (Hidden by default) -->
+      <div id="planDeep" class="hidden space-y-4">
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-fujiBlue-100 text-fujiBlue-700 font-serif font-bold text-lg flex items-center justify-center shrink-0">D1</span>
+            <div>
+              <div class="text-xs font-bold text-fujiBlue-700 uppercase tracking-wider">咖啡香與復古下町</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">清澄白河獨立烘焙咖啡 ➔ 東京都現代美術館 ➔ 谷根千（谷中銀座街）</h3>
+              <p class="text-xs text-slate-500 mt-2">在東京咖啡一級戰區清澄白河品味職人手沖，午後漫步老貓街谷根千，體會昭和懷舊日常。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-fujiBlue-100 text-fujiBlue-700 font-serif font-bold text-lg flex items-center justify-center shrink-0">D2</span>
+            <div>
+              <div class="text-xs font-bold text-fujiBlue-700 uppercase tracking-wider">古著次文化與綠意雜貨</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">下北澤古著選品店 ➔ 吉祥寺雜貨街 ➔ 井之頭恩賜公園划船</h3>
+              <p class="text-xs text-slate-500 mt-2">走訪文青心目中的聖地下北澤，下午前往連續多年獲選「東京最想居住街區」的吉祥寺探索隱藏小巷。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-fujiBlue-100 text-fujiBlue-700 font-serif font-bold text-lg flex items-center justify-center shrink-0">D3</span>
+            <div>
+              <div class="text-xs font-bold text-fujiBlue-700 uppercase tracking-wider">文藝品味與目黑川浪漫</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">代官山蔦屋書店 ➔ 中目黑星巴克臻選烘焙工坊 ➔ 惠比壽花園廣場</h3>
+              <p class="text-xs text-slate-500 mt-2">被譽為世界最美二十大書店之一的代官山蔦屋，沿著目黑川慢行至全球唯六的星巴克旗艦工坊。</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="p-6 rounded-3xl bg-white border border-slate-200/80 shadow-sm flex flex-col md:flex-row md:items-center justify-between gap-6">
+          <div class="flex items-start space-x-4">
+            <span class="w-12 h-12 rounded-2xl bg-fujiBlue-100 text-fujiBlue-700 font-serif font-bold text-lg flex items-center justify-center shrink-0">D4</span>
+            <div>
+              <div class="text-xs font-bold text-fujiBlue-700 uppercase tracking-wider">建築光影與森之美術館</div>
+              <h3 class="font-serif text-xl font-bold text-slate-900 mt-1">六本木之丘森美術館 ➔ 國立新美術館 (黑川紀章名作) ➔ 返程歸國</h3>
+              <p class="text-xs text-slate-500 mt-2">感受六本木藝術金三角的當代建築震撼，於東京城市美學中劃下完美句點。</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="budget" class="py-24 max-w-5xl mx-auto px-6 sm:px-8">
+    <div class="text-center max-w-xl mx-auto mb-14">
+      <span class="text-xs font-bold uppercase tracking-widest text-sakuraPink-600 block mb-2">BUDGET ESTIMATOR</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">東京自由行預算即時試算</h2>
+      <p class="text-slate-500 text-sm mt-2">根據你的天數、住宿檔次與餐飲風格，即時估算每人大概預算（以日圓 JPY 與台幣 TWD 換算）。</p>
+    </div>
+
+    <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-12 shadow-japanese grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
+      
+      <!-- Input Controls -->
+      <div class="lg:col-span-7 space-y-6">
+        
+        <!-- Days Slider -->
+        <div>
+          <div class="flex justify-between items-center mb-2">
+            <label class="text-xs font-bold text-slate-700 uppercase">旅行天數 (Days)</label>
+            <span id="daysDisplay" class="text-sm font-bold text-sakuraPink-600 font-serif">5 天 4 夜</span>
+          </div>
+          <input type="range" id="daysInput" min="3" max="10" value="5" class="w-full accent-sakuraPink-500 cursor-pointer">
+          <div class="flex justify-between text-[11px] text-slate-400 mt-1">
+            <span>3 天快閃</span>
+            <span>5 天經典</span>
+            <span>7 天深度</span>
+            <span>10 天漫遊</span>
+          </div>
+        </div>
+
+        <!-- Accommodation Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-2">住宿風格 (每晚單人分攤預算)</label>
+          <div class="grid grid-cols-3 gap-2" id="staySelector">
+            <button data-cost="5000" class="stay-btn active p-3 rounded-2xl border text-center border-slate-900 bg-slate-900 text-white transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">青年旅館/膠囊</span>
+              <span class="text-[10px] opacity-80">約 ¥5,000 /晚</span>
+            </button>
+            <button data-cost="12000" class="stay-btn p-3 rounded-2xl border text-center border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">商務連鎖飯店</span>
+              <span class="text-[10px] opacity-80">約 ¥12,000 /晚</span>
+            </button>
+            <button data-cost="28000" class="stay-btn p-3 rounded-2xl border text-center border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">星級精品酒店</span>
+              <span class="text-[10px] opacity-80">約 ¥28,000 /晚</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Food Selection -->
+        <div>
+          <label class="block text-xs font-bold text-slate-700 uppercase mb-2">餐飲標準 (每日預算)</label>
+          <div class="grid grid-cols-3 gap-2" id="foodSelector">
+            <button data-cost="3500" class="food-btn p-3 rounded-2xl border text-center border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">小資拉麵超商</span>
+              <span class="text-[10px] opacity-80">約 ¥3,500 /天</span>
+            </button>
+            <button data-cost="7000" class="food-btn active p-3 rounded-2xl border text-center border-slate-900 bg-slate-900 text-white transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">精緻名店定食</span>
+              <span class="text-[10px] opacity-80">約 ¥7,000 /天</span>
+            </button>
+            <button data-cost="16000" class="food-btn p-3 rounded-2xl border text-center border-slate-200 bg-white text-slate-700 hover:bg-slate-50 transition-all text-xs font-semibold">
+              <span class="block text-sm mb-0.5">和牛燒肉米其林</span>
+              <span class="text-[10px] opacity-80">約 ¥16,000 /天</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- Include Flight & Attractions Toggle -->
+        <div class="flex items-center justify-between p-4 rounded-2xl bg-slate-50 border border-slate-200">
+          <div>
+            <span class="text-xs font-bold text-slate-800 block">加入來回機票與景點門票概估</span>
+            <span class="text-[11px] text-slate-500">一般廉航/傳統航空經濟艙平均 + 門票</span>
+          </div>
+          <input type="checkbox" id="flightToggle" checked class="w-5 h-5 accent-sakuraPink-500 rounded cursor-pointer">
+        </div>
+
+      </div>
+
+      <!-- Result Card Display -->
+      <div class="lg:col-span-5 bg-gradient-to-br from-slate-900 to-slate-950 text-white p-8 rounded-3xl relative overflow-hidden flex flex-col justify-between">
+        <div class="absolute -right-10 -bottom-10 opacity-10">
+          <i data-lucide="yen-sign" class="w-48 h-48 text-white"></i>
+        </div>
+
+        <div class="relative z-10 space-y-6">
+          <div class="flex items-center justify-between">
+            <span class="text-xs font-bold tracking-widest text-sakuraPink-400 uppercase">總預算概估 (單人)</span>
+            <span class="px-2.5 py-0.5 rounded-full bg-white/10 text-[10px]">匯率約 0.21</span>
+          </div>
+
+          <div>
+            <div class="text-xs text-slate-400">日幣預估總額</div>
+            <div id="totalJpy" class="font-serif text-3xl sm:text-4xl font-bold text-white mt-1">
+              ¥105,000
+            </div>
+          </div>
+
+          <div class="pt-4 border-t border-white/10">
+            <div class="text-xs text-sakuraPink-300">折合新台幣 (約)</div>
+            <div id="totalTwd" class="font-serif text-3xl sm:text-4xl font-bold text-sakuraPink-300 mt-1">
+              NT$ 22,050
+            </div>
+          </div>
+
+          <div class="text-[11px] text-slate-400 space-y-1.5 pt-2">
+            <div class="flex justify-between"><span>住宿費：</span><span id="breakdownStay">¥20,000</span></div>
+            <div class="flex justify-between"><span>餐飲伙食：</span><span id="breakdownFood">¥35,000</span></div>
+            <div class="flex justify-between"><span>市區交通預估：</span><span id="breakdownTransport">¥6,000</span></div>
+            <div class="flex justify-between"><span>機票與常態門票：</span><span id="breakdownFlight">¥44,000</span></div>
+          </div>
+        </div>
+
+        <div class="relative z-10 mt-6 pt-4 border-t border-white/10 text-[10px] text-slate-400 leading-tight">
+          * 試算結果僅供參考，實際花費可能隨旅遊淡旺季、機票促銷及個人購物消費有所差異。
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="transport" class="py-24 bg-white border-y border-slate-200/80">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      
+      <div class="text-center max-w-2xl mx-auto mb-16">
+        <span class="text-xs font-bold uppercase tracking-widest text-sakuraPink-600 block mb-2">ESSENTIAL TRAVEL GUIDE</span>
+        <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">行前必備：交通、四季與禮儀全攻略</h2>
+        <div class="w-12 h-0.5 bg-sakuraPink-500 mx-auto mt-4"></div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+        
+        <!-- Pillar 1: Subway & Passes -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-400 transition-all">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-fujiBlue-100 text-fujiBlue-700 flex items-center justify-center mb-6">
+              <i data-lucide="train" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">東京地鐵與交通票券</h3>
+            <p class="text-xs text-slate-600 leading-relaxed space-y-2">
+              <span class="block"><strong>1. Suica / PASMO IC卡：</strong>iPhone 用戶可直接於 Apple 錢包綁定加值，搭乘地鐵公車、超商付款一逼即過。</span>
+              <span class="block"><strong>2. Tokyo Subway Ticket：</strong>外國旅客專屬神券！分 24/48/72 小時券，無限次搭乘東京 Metro 9 條線 + 都營 4 條線，極其划算。</span>
+              <span class="block"><strong>3. 機場快速線：</strong>成田機場搭乘 Skyliner (41分達日暮里) 或 N'EX；羽田機場搭乘單軌電車或京急線 (約20分抵市區)。</span>
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-semibold text-slate-800">
+            ★ 小訣竅：善用 Google Maps 或「乘換案內」APP 查列車月台編號
+          </div>
+        </div>
+
+        <!-- Pillar 2: Four Seasons Guide -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-400 transition-all">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-sakuraPink-100 text-sakuraPink-600 flex items-center justify-center mb-6">
+              <i data-lucide="sun-snow" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">東京四季最佳旅遊時段</h3>
+            <p class="text-xs text-slate-600 leading-relaxed space-y-2">
+              <span class="block"><strong>🌸 春季 (3月下旬 - 4月)：</strong>櫻花季，氣候涼爽舒服（10-18°C）。目黑川、千鳥之淵、新宿御苑粉紅盛開。</span>
+              <span class="block"><strong>🎆 夏季 (7月 - 8月)：</strong>祭典與花火節，偶有陣雨與高溫（25-34°C），隅田川花火大會不可錯過。</span>
+              <span class="block"><strong>🍁 秋季 (10月 - 11月)：</strong>最舒適旅行季節！明治神宮外苑銀杏大道金黃璀璨、高尾山滿山紅葉。</span>
+              <span class="block"><strong>❄️ 冬季 (12月 - 2月)：</strong>冷涼乾燥晴朗（2-12°C），市區六本木與表參道有絕美冬季聖誕燈飾（Illumination）。</span>
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-semibold text-slate-800">
+            ★ 推薦初訪季節：春櫻季 (3月底) 或 秋楓銀杏季 (11月中)
+          </div>
+        </div>
+
+        <!-- Pillar 3: Etiquette & Customs -->
+        <div class="p-8 rounded-3xl bg-slate-50 border border-slate-200/80 flex flex-col justify-between hover:border-slate-400 transition-all">
+          <div>
+            <div class="w-12 h-12 rounded-2xl bg-amber-100 text-amber-700 flex items-center justify-center mb-6">
+              <i data-lucide="shield-alert" class="w-6 h-6"></i>
+            </div>
+            <h3 class="font-serif text-xl font-bold text-slate-900 mb-2">實用禮儀與退稅指南</h3>
+            <p class="text-xs text-slate-600 leading-relaxed space-y-2">
+              <span class="block"><strong>1. 電車禮儀：</strong>車廂內請調為靜音模式（マナーモード），盡量不通電話；在手扶梯上東京習慣靠左站立。</span>
+              <span class="block"><strong>2. 垃圾分類：</strong>街頭垃圾桶極少，建議自備小塑膠袋裝垃圾回飯店丟棄；自動販賣機旁圓孔僅供回收飲料罐。</span>
+              <span class="block"><strong>3. 免稅退稅 (Tax Free)：</strong>在同一家店單日一般品或消耗品滿 5,000 日圓即可出示實體護照退 10% 消費稅。</span>
+            </p>
+          </div>
+          <div class="mt-6 pt-4 border-t border-slate-200 text-xs font-semibold text-slate-800">
+            ★ 貼心提醒：無須給小費；餐廳通常提供免費冰開水
+          </div>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <section id="checklist" class="py-24 max-w-4xl mx-auto px-6 sm:px-8">
+    <div class="text-center max-w-xl mx-auto mb-12">
+      <span class="text-xs font-bold uppercase tracking-widest text-sakuraPink-600 block mb-2">TRAVEL BUCKET LIST</span>
+      <h2 class="text-3xl sm:text-4xl font-serif font-bold text-slate-900">東京初訪 10 大必做願望清單</h2>
+      <p class="text-slate-500 text-sm mt-2">點擊勾選你的打卡進度，為下一次的東京出發做好準備！</p>
+    </div>
+
+    <div class="bg-white rounded-3xl border border-slate-200 p-8 sm:p-10 shadow-japanese">
+      <div class="flex items-center justify-between pb-6 border-b border-slate-100 mb-6">
+        <div>
+          <span class="text-xs font-bold uppercase text-slate-400">目前達成率</span>
+          <div class="text-2xl font-serif font-bold text-slate-900" id="progressPercentage">0% (0 / 10)</div>
+        </div>
+        <button onclick="resetChecklist()" class="text-xs text-slate-400 hover:text-sakuraPink-600 underline transition-colors">
+          清空重選
+        </button>
+      </div>
+
+      <!-- Checklist Items Grid -->
+      <div class="space-y-3.5" id="bucketItems">
+        <!-- Dynamically managed via JS -->
+      </div>
+
+      <div id="congratsBox" class="hidden mt-6 p-4 rounded-2xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs text-center font-medium">
+        🎉 太厲害了！你已經完成所有經典東京打卡項目，絕對是名副其實的東京通！
+      </div>
+    </div>
+  </section>
+
+  <footer class="bg-slate-950 text-white py-16 border-t border-slate-800">
+    <div class="max-w-7xl mx-auto px-6 sm:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-slate-800">
+        
+        <div class="md:col-span-6 space-y-3">
+          <div class="flex items-center space-x-2">
+            <div class="w-8 h-8 rounded-xl bg-sakuraPink-600 text-white flex items-center justify-center font-serif font-bold text-sm">
+              東
+            </div>
+            <span class="font-serif text-2xl font-bold tracking-wider">TOKYO TRAVEL</span>
+          </div>
+          <p class="text-xs text-slate-400 leading-relaxed max-w-md">
+            專為華語旅人打造的東京自由行指南。致力於整理最新、最精準的在地街區特色、行程動線規劃與自由行旅遊攻略。
+          </p>
+        </div>
+
+        <div class="md:col-span-6 md:text-right space-y-3">
+          <div class="text-xs tracking-widest uppercase text-slate-400">實用官方旅遊資源連結</div>
+          <div class="flex flex-wrap md:justify-end gap-3 text-xs">
+            <a href="https://www.gotokyo.org/tc/index.html" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 hover:border-sakuraPink-500 hover:text-sakuraPink-300 transition-colors">Go Tokyo 東京旅遊官方網</a>
+            <a href="https://www.tokyometro.jp/tcn/" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 hover:border-sakuraPink-500 hover:text-sakuraPink-300 transition-colors">東京 Metro 地鐵指南</a>
+            <a href="https://www.visting-japan.com" target="_blank" rel="noopener noreferrer" class="px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-800 hover:border-sakuraPink-500 hover:text-sakuraPink-300 transition-colors">Visit Japan Web 入境申報</a>
+          </div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-slate-500 space-y-4 sm:space-y-0">
+        <p>© 2026 Tokyo Travel Guide. 非官方旅遊推廣設計示範專案。</p>
+        <p class="font-serif italic text-slate-400">「旅程的意義，不在於踏上多少土地，而在於遇見全新的自己。」</p>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // 1. Initialize Icons
+    lucide.createIcons();
+
+    // 2. Mobile Drawer Navigation Toggle
+    const mobileNavToggle = document.getElementById('mobileNavToggle');
+    const mobileDrawer = document.getElementById('mobileDrawer');
+    const mobileItems = document.querySelectorAll('.mobile-nav-item');
+
+    if (mobileNavToggle) {
+      mobileNavToggle.addEventListener('click', () => {
+        mobileDrawer.classList.toggle('hidden');
+      });
+    }
+
+    mobileItems.forEach(item => {
+      item.addEventListener('click', () => {
+        mobileDrawer.classList.add('hidden');
+      });
+    });
+
+    // 3. District Category Filter Logic
+    function switchDistrict(category) {
+      const tabs = document.querySelectorAll('.district-tab');
+      tabs.forEach(tab => {
+        tab.classList.remove('tab-active');
+        tab.classList.add('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+      });
+
+      event.target.classList.add('tab-active');
+      event.target.classList.remove('bg-white', 'text-slate-600', 'border', 'border-slate-200');
+
+      const cards = document.querySelectorAll('.district-card');
+      cards.forEach(card => {
+        const type = card.getAttribute('data-type');
+        if (category === 'all' || type === category) {
+          card.style.display = 'flex';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    // 4. District Details Modal Content & Handling
+    const districtInfoDatabase = {
+      shibuya: {
+        name: "澀谷 (SHIBUYA)",
+        subtag: "流行前線與都會露台",
+        img: "https://images.unsplash.com/photo-1542051841857-5f90071e7989?auto=format&fit=crop&w=1000&q=80",
+        desc: "澀谷是世界年輕人文化的聚集地，十字路口每逢綠燈時最高有三千人同時交錯通行。近年的都市更新帶來了宮下公園的空中綠地與 SHIBUYA SKY 展望露台，賦予街區嶄新活力。",
+        tip: "強烈建議在出發前 4 週上網預訂 SHIBUYA SKY 的日落時段票券（約午後 16:30-17:30），能一次捕捉白天、夕陽魔幻時刻與繁華夜景。",
+        pass: "可使用 JR 山手線、東京 Metro 銀座線、半藏門線、副都心線抵達。",
+        eats: "極味屋（鐵板和牛漢堡排）、挽肉與米、道玄坂曼波拉麵、澀谷西村水果聖代。"
+      },
+      asakusa: {
+        name: "淺草 (ASAKUSA)",
+        subtag: "江戶風情與下町文化",
+        img: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=1000&q=80",
+        desc: "東京最古老寺廟淺草寺所在地。巨大的「雷門」紅燈籠是遊客的必拍地標。穿過熱鬧的仲見世通，可以找到代代相傳的手工仙貝、人形燒與和服租借體驗店。",
+        tip: "若想避開人潮，可以在早上 8 點前抵達淺草寺參拜散步，此時晨光灑在朱紅山門上，格外寧靜神聖。",
+        pass: "東京 Metro 銀座線、都營淺草線直達。持 Tokyo Subway Ticket 極為划算。",
+        eats: "淺草炸肉餅 (浅草メンチ)、花月堂巨無霸菠蘿麵包、壽々喜園 7 種濃度抹茶冰淇淋、大黑家天丼。"
+      },
+      shinjuku: {
+        name: "新宿 (SHINJUKU)",
+        subtag: "巨型樞紐與不夜城",
+        img: "https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?auto=format&fit=crop&w=1000&q=80",
+        desc: "新宿車站為金氏世界紀錄最繁忙車站。東口有熱鬧的歌舞伎町與各類百貨；西口是東京都廳為首的摩天大樓群；南口則連通新宿御苑綠意。",
+        tip: "東京都廳南展望室為免費參觀，晚上開放至 22:00（需注意每月休館日），是欣賞新宿高空夜景的高CP值首選！",
+        pass: "JR 全線、丸之內線、都營新宿線與大江戶線樞紐。",
+        eats: "風雲兒濃厚魚介沾麵、牛かつ もと村炸牛排、HARBS 水果千層蛋糕、敘敘苑高空燒肉。"
+      },
+      ginza: {
+        name: "銀座 (GINZA)",
+        subtag: "百年優雅與極致精品",
+        img: "https://images.unsplash.com/photo-1555400038-63f5ba517a47?auto=format&fit=crop&w=1000&q=80",
+        desc: "自江戶時代即為鑄幣廠所在，今日則為世界頂級奢華品牌的集中地。老字號和光百貨鐘塔、GINZA SIX 現代建築與文具名店伊東屋在此相映成趣。",
+        tip: "週六、週日及國定假日中午 12:00 起實施「步行者天國」，主幹道禁止車輛進入，非常適合在街道中央拍照漫遊！",
+        pass: "銀座線、日比谷線、丸之內線在「銀座站」地下交會。",
+        eats: "銀座 篝（米其林推薦雞白湯松露拉麵）、銀座木村家紅豆麵包、煉瓦亭百年洋食炸豬排。"
+      },
+      akihabara: {
+        name: "秋葉原 (AKIHABARA)",
+        subtag: "電氣、模型與次文化中心",
+        img: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=1000&q=80",
+        desc: "世界最大的動漫模型與電氣街。從二次元周邊、經典復古遊戲卡帶、夾娃娃機大型遊樂場到電腦零件應有盡有，是科技與潮流愛好者的尋寶基地。",
+        tip: "想買模型推薦逛「Radio 會館 (ラジオ会館)」與「Mandarake Complex」；購買電器推薦到規模極大的 Yodobashi-Akiba (友都八喜)。",
+        pass: "JR 山手線、京濱東北線、總武線、日比谷線。",
+        eats: "丸五日式炸豬排、青島食堂生薑拉麵、牛角燒肉秋葉原店、女僕主題餐廳體驗。"
+      },
+      odaiba: {
+        name: "台場 (ODAIBA)",
+        subtag: "海濱度假與浪漫海灣夜景",
+        img: "https://images.unsplash.com/photo-1503899036084-c55cdd92da26?auto=format&fit=crop&w=1000&q=80",
+        desc: "位於東京灣的填海造陸娛樂特區。具備開闊的海濱沙灘、自由女神複製像、實物大獨角獸鋼彈變形燈光秀以及大型購物商城。",
+        tip: "搭乘百合海鷗號時，推薦坐在最前面的第一節車廂（無人駕駛），能享受如同雲霄飛車般穿越彩虹大橋的絕景視角！",
+        pass: "從新橋站轉乘私鐵「百合海鷗號 (ゆりかもめ)」或搭乘臨海線。",
+        eats: "Bills 台場店（香蕉蜂蜜蜂巢奶油鬆餅）、築地玉壽司吃到飽、DiverCity 美食街各色定食。"
+      }
+    };
+
+    const districtModal = document.getElementById('districtModal');
+    const modalImg = document.getElementById('modalImg');
+    const modalName = document.getElementById('modalName');
+    const modalSubtag = document.getElementById('modalSubtag');
+    const modalDesc = document.getElementById('modalDesc');
+    const modalTip = document.getElementById('modalTip');
+    const modalPass = document.getElementById('modalPass');
+    const modalEats = document.getElementById('modalEats');
+
+    function openDetailModal(id) {
+      const data = districtInfoDatabase[id];
+      if (!data) return;
+
+      modalImg.src = data.img;
+      modalName.textContent = data.name;
+      modalSubtag.textContent = data.subtag;
+      modalDesc.textContent = data.desc;
+      modalTip.textContent = data.tip;
+      modalPass.textContent = data.pass;
+      modalEats.textContent = data.eats;
+
+      districtModal.classList.remove('modal-hidden');
+      districtModal.classList.add('modal-active');
+      document.body.style.overflow = 'hidden';
+      lucide.createIcons();
+    }
+
+    function closeDetailModal() {
+      districtModal.classList.remove('modal-active');
+      districtModal.classList.add('modal-hidden');
+      document.body.style.overflow = '';
+    }
+
+    districtModal.addEventListener('click', (e) => {
+      if (e.target === districtModal) closeDetailModal();
+    });
+
+    // 5. Itinerary Switcher Logic
+    function showItinerary(type) {
+      const btnClassic = document.getElementById('btnPlanClassic');
+      const btnDeep = document.getElementById('btnPlanDeep');
+      const planClassic = document.getElementById('planClassic');
+      const planDeep = document.getElementById('planDeep');
+
+      if (type === 'classic') {
+        btnClassic.className = "px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition-all shadow-sm";
+        btnDeep.className = "px-5 py-2 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all";
+        planClassic.classList.remove('hidden');
+        planDeep.classList.add('hidden');
+      } else {
+        btnDeep.className = "px-5 py-2 rounded-full text-xs font-semibold bg-slate-900 text-white transition-all shadow-sm";
+        btnClassic.className = "px-5 py-2 rounded-full text-xs font-semibold bg-white text-slate-700 border border-slate-200 hover:bg-slate-100 transition-all";
+        planDeep.classList.remove('hidden');
+        planClassic.classList.add('hidden');
+      }
+    }
+
+    // 6. Interactive Budget Calculator Engine
+    const daysInput = document.getElementById('daysInput');
+    const daysDisplay = document.getElementById('daysDisplay');
+    const stayButtons = document.querySelectorAll('.stay-btn');
+    const foodButtons = document.querySelectorAll('.food-btn');
+    const flightToggle = document.getElementById('flightToggle');
+
+    let selectedDays = 5;
+    let selectedStayRate = 5000;
+    let selectedFoodRate = 7000;
+    const JPY_TO_TWD = 0.21;
+
+    daysInput.addEventListener('input', (e) => {
+      selectedDays = parseInt(e.target.value);
+      daysDisplay.textContent = `${selectedDays} 天 ${selectedDays - 1} 夜`;
+      calculateBudget();
+    });
+
+    stayButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        stayButtons.forEach(b => {
+          b.classList.remove('active', 'bg-slate-900', 'text-white');
+          b.classList.add('bg-white', 'text-slate-700');
+        });
+        btn.classList.add('active', 'bg-slate-900', 'text-white');
+        btn.classList.remove('bg-white', 'text-slate-700');
+        selectedStayRate = parseInt(btn.getAttribute('data-cost'));
+        calculateBudget();
+      });
+    });
+
+    foodButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        foodButtons.forEach(b => {
+          b.classList.remove('active', 'bg-slate-900', 'text-white');
+          b.classList.add('bg-white', 'text-slate-700');
+        });
+        btn.classList.add('active', 'bg-slate-900', 'text-white');
+        btn.classList.remove('bg-white', 'text-slate-700');
+        selectedFoodRate = parseInt(btn.getAttribute('data-cost'));
+        calculateBudget();
+      });
+    });
+
+    flightToggle.addEventListener('change', () => {
+      calculateBudget();
+    });
+
+    function calculateBudget() {
+      const nights = Math.max(1, selectedDays - 1);
+      const stayCost = nights * selectedStayRate;
+      const foodCost = selectedDays * selectedFoodRate;
+      const transportCost = selectedDays * 1200; // 平均每日地鐵車資約 1,200 JPY
+      const flightAndTickets = flightToggle.checked ? 44000 : 0; // 機票與主要門票約 44,000 JPY
+
+      const totalJpyVal = stayCost + foodCost + transportCost + flightAndTickets;
+      const totalTwdVal = Math.round(totalJpyVal * JPY_TO_TWD);
+
+      document.getElementById('totalJpy').textContent = `¥${totalJpyVal.toLocaleString()}`;
+      document.getElementById('totalTwd').textContent = `NT$ ${totalTwdVal.toLocaleString()}`;
+
+      document.getElementById('breakdownStay').textContent = `¥${stayCost.toLocaleString()}`;
+      document.getElementById('breakdownFood').textContent = `¥${foodCost.toLocaleString()}`;
+      document.getElementById('breakdownTransport').textContent = `¥${transportCost.toLocaleString()}`;
+      document.getElementById('breakdownFlight').textContent = `¥${flightAndTickets.toLocaleString()}`;
+    }
+
+    calculateBudget();
+
+    // 7. Travel Bucket List Checklist Engine
+    const bucketListTasks = [
+      "走過澀谷十字路口並登上 SHIBUYA SKY 觀賞夕陽",
+      "在淺草寺雷門大燈籠前合影，並在仲見世街吃人形燒",
+      "在築地場外市場品嚐鮮甜的海膽鮭魚卵生魚片丼飯",
+      "登臨東京鐵塔或六本木之丘，遠眺絕美東京城市夜景",
+      "在春季目黑川畔或秋季明治神宮外苑散步野餐",
+      "品嚐一碗道地的濃厚雞白湯或豚骨拉麵（配一顆溏心蛋）",
+      "搭乘百合海鷗號電車穿越彩虹大橋，朝聖台場實物大鋼彈",
+      "在便利商店（Lawson / 7-11 / FamilyMart）買炸雞與布丁當宵夜",
+      "造訪世界最美書店之一「代官山蔦屋書店」喝杯咖啡",
+      "在東京車站一番街挑選人氣伴手禮滿載而歸"
+    ];
+
+    const bucketItemsContainer = document.getElementById('bucketItems');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const congratsBox = document.getElementById('congratsBox');
+    let completedIndices = [];
+
+    function renderChecklist() {
+      bucketItemsContainer.innerHTML = '';
+      bucketListTasks.forEach((task, idx) => {
+        const isDone = completedIndices.includes(idx);
+        const itemDiv = document.createElement('div');
+        itemDiv.className = `p-3.5 rounded-2xl border transition-all cursor-pointer flex items-center justify-between ${
+          isDone ? 'bg-sakuraPink-50 border-sakuraPink-300 text-slate-800' : 'bg-slate-50 border-slate-200 text-slate-600 hover:bg-slate-100'
+        }`;
+        itemDiv.onclick = () => toggleTask(idx);
+
+        itemDiv.innerHTML = `
+          <div class="flex items-center space-x-3 text-xs sm:text-sm font-medium">
+            <span class="w-5 h-5 rounded-lg border ${
+              isDone ? 'bg-sakuraPink-500 border-sakuraPink-500 text-white flex items-center justify-center' : 'border-slate-300 bg-white'
+            }">
+              ${isDone ? '<i data-lucide="check" class="w-3.5 h-3.5"></i>' : ''}
+            </span>
+            <span class="${isDone ? 'line-through text-slate-400' : ''}">${task}</span>
+          </div>
+          <span class="text-[11px] font-bold ${isDone ? 'text-sakuraPink-600' : 'text-slate-300'}">#0${idx + 1}</span>
+        `;
+        bucketItemsContainer.appendChild(itemDiv);
+      });
+
+      const pct = Math.round((completedIndices.length / bucketListTasks.length) * 100);
+      progressPercentage.textContent = `${pct}% (${completedIndices.length} / ${bucketListTasks.length})`;
+
+      if (completedIndices.length === bucketListTasks.length) {
+        congratsBox.classList.remove('hidden');
+      } else {
+        congratsBox.classList.add('hidden');
+      }
+
+      lucide.createIcons();
+    }
+
+    function toggleTask(index) {
+      if (completedIndices.includes(index)) {
+        completedIndices = completedIndices.filter(i => i !== index);
+      } else {
+        completedIndices.push(index);
+      }
+      renderChecklist();
+    }
+
+    function resetChecklist() {
+      completedIndices = [];
+      renderChecklist();
+    }
+
+    // Initialize checklist
+    renderChecklist();
+  </script>
+</body>
+</html>
